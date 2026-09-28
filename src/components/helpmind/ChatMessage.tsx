@@ -12,7 +12,8 @@ export function ChatMessage({ message, name }: { message: ChatMessageItem; name:
     );
   }
 
-  const greeting = message.greeting?.replace("Priya", name.split(" ")[0]);
+  const firstName = name.split(" ")[0] ?? name;
+  const greeting = message.greeting?.replace("Priya", firstName);
 
   return (
     <div className="flex gap-3">
