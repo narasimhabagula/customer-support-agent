@@ -21,7 +21,7 @@ export function SupportChat({
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages.length]);
+  }, [messages]);
 
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-soft">
