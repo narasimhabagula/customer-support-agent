@@ -1,10 +1,16 @@
 import { Brain } from "lucide-react";
-import { memories } from "@/lib/demo-data";
+import type { MemoryItem } from "@/lib/demo-data";
 import { MemoryCard } from "./MemoryCard";
 import { MemoryFlow } from "./MemoryFlow";
 import { CustomerProfile } from "./CustomerProfile";
 
-export function MemoryPanel({ customerName }: { customerName: string }) {
+export function MemoryPanel({
+  customerName,
+  memories = [],
+}: {
+  customerName: string;
+  memories?: MemoryItem[];
+}) {
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="rounded-xl border border-memory-border bg-card p-4">
@@ -15,7 +21,7 @@ export function MemoryPanel({ customerName }: { customerName: string }) {
               AI Memory
             </h2>
             <p className="mt-1 text-xs text-muted-foreground">
-              Relevant memories used for this response
+              Memories recalled for the latest reply
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-success-soft px-2.5 py-1 text-[11px] font-medium text-success">
@@ -26,9 +32,13 @@ export function MemoryPanel({ customerName }: { customerName: string }) {
       </div>
 
       <div className="space-y-3">
-        {memories.map((memory) => (
-          <MemoryCard key={memory.id} memory={memory} />
-        ))}
+        {memories.length === 0 ? (
+          <p className="rounded-xl border border-dashed border-border bg-card p-4 text-center text-xs text-muted-foreground">
+            No memories recalled yet. Send a message and relevant memories will appear here.
+          </p>
+        ) : (
+          memories.map((memory) => <MemoryCard key={memory.id} memory={memory} />)
+        )}
       </div>
 
       <MemoryFlow />

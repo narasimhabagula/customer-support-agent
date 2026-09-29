@@ -74,6 +74,8 @@ export type ChatMessageItem = {
   outro?: string[];
   signature?: string[];
   memoryUsed?: { label: string; detail: string };
+  pending?: boolean;
+  error?: boolean;
 };
 
 export const exampleConversation: ChatMessageItem[] = [

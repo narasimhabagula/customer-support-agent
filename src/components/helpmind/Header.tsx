@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Plus } from "lucide-react";
+import { Menu, Plus, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Logo } from "./Logo";
@@ -16,9 +16,11 @@ const nav = [
 export function Header({
   customerName,
   onNewChat,
+  onSwitchCustomer,
 }: {
   customerName?: string;
   onNewChat?: () => void;
+  onSwitchCustomer?: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -80,6 +82,12 @@ export function Header({
             <span className={cn("size-1.5 rounded-full bg-success")} />
             AI Online
           </span>
+          {onSwitchCustomer ? (
+            <Button size="sm" variant="outline" onClick={onSwitchCustomer} className="gap-1.5">
+              <UserRound className="size-4" />
+              <span className="hidden md:inline">Switch customer</span>
+            </Button>
+          ) : null}
           {onNewChat ? (
             <Button size="sm" onClick={onNewChat} className="gap-1.5">
               <Plus className="size-4" />
