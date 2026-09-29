@@ -1,3 +1,4 @@
+import { resolveCustomer } from "@/lib/customers";
 import { Mail, MapPin } from "lucide-react";
 import { customer } from "@/lib/demo-data";
 
@@ -17,7 +18,7 @@ export function CustomerProfile({ name = customer.name }: { name?: string }) {
         </span>
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-foreground">{name}</p>
-          <p className="text-xs text-muted-foreground">{customer.id}</p>
+          <p className="text-xs text-muted-foreground">{resolveCustomer(name).id}</p>
         </div>
       </div>
 
