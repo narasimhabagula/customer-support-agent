@@ -22,3 +22,7 @@ export function useCustomerName() {
 export function storeCustomerName(value: string) {
   window.localStorage.setItem(KEY, value);
 }
+
+export function clearCustomerName() {
+  window.localStorage.removeItem(KEY);
+}
